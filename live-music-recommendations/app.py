@@ -1,5 +1,4 @@
 from crypt import methods
-from nturl2path import url2pathname
 from urllib import request
 from flask import Flask, render_template, request, redirect
 from requests import get, post
