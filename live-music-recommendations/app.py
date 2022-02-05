@@ -9,6 +9,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/recommendation')
+def recommendation():
+    return render_template('recommendation.html')
+
+
 @app.route('/lol')
 def test():
     pass
