@@ -8,9 +8,22 @@
         Get recommendations by:
 
         <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary" type="button">Artists</button>
-            <button class="btn btn-primary" type="button">Playlists</button>
-            <button class="btn btn-primary" type="button">Genre</button>
+            <button type="button" class="btn btn-primary active" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Artist</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Playlists</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Genre</button>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter location/city:</label>
+            <input class="form-control" type="text" placeholder="Toronto" aria-label="default input example">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter date range of live performances:</label>
+            <input class="form-control" type="text" placeholder="Start date" aria-label="default input example">
+            <input class="form-control" type="text" placeholder="End date" aria-label="default input example">
         </div>
 
     {% endblock %}
