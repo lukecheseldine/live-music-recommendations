@@ -4,6 +4,13 @@
         Welcome
     {% endblock %}
 
+    {% block scripts%}
+        <script src="{{ url_for('static', filename='login.js')}}" defer></script>
+    {% endblock %}
+
     {% block content %}
         <h1>Welcome!</h1>
+        <form method="POST" action="{{ url_for('authorize')}}">
+            <button formmethod="POST" type="submit" id="login">Login</button>
+        </form>
     {% endblock %}
