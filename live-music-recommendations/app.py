@@ -1,7 +1,5 @@
-from crypt import methods
-from urllib import request
 from flask import Flask, render_template, request, redirect
-from requests import get, post
+from requests import post
 from base64 import urlsafe_b64encode
 
 
@@ -17,14 +15,12 @@ SCOPES = 'user-read-private user-follow-read user-library-read playlist-read-pri
 @app.route('/')
 def index():
     return render_template('index.html')
-    
+
 
 @app.route('/authorize', methods = ['POST'])
 def authorize():
-    # SCOPES? user-read-private user-follow-read user-library-read playlist-read-private user-top-read
     url = f'https://accounts.spotify.com/authorize?response_type=code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPES}'
     print(url)
-    # response = get(url)
     return redirect(url)
     
 
