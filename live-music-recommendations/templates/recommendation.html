@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+    {% block title %}
+        Recommendations
+    {% endblock %}
+
+    {% block content %}
+        Get recommendations by:
+
+        <div class="d-grid gap-2 d-md-block">
+            <button type="button" class="btn btn-primary active" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Artist</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Playlists</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Genre</button>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter location/city:</label>
+            <input class="form-control" type="text" placeholder="Toronto" aria-label="default input example">
+        </div>
+
+
+        <div class="mb-3">
+
+            <form method="POST" action="{{ url_for('playlist')}}">
+                <label for="exampleFormControlInput1" class="form-label">Enter date range of live performances:</label>
+                <input name="start" class="form-control" type="text" placeholder="Start date" aria-label="default input example">
+                <input name="end" class="form-control" type="text" placeholder="End date" aria-label="default input example">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+            
+            <!-- <select class="form-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select> -->
+        </div>
+
+    {% endblock %}
