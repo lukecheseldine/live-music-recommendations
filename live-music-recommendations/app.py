@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, request, redirect
 from requests import post
 from base64 import urlsafe_b64encode
@@ -41,3 +42,12 @@ def callback():
             'Content-Type': 'application/x-www-form-urlencoded'
         }) 
         return redirect('/recommendation')
+
+@app.route('/recommendation')
+def recommendation():
+    return render_template('recommendation.html')
+
+
+@app.route('/playlist', methods=['POST', 'GET'])
+def playlist():
+    return 'playlist'
