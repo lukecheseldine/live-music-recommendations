@@ -15,8 +15,8 @@
         <p class="text-center fs-2 googfont " style="padding-top: 80px !important;">Get recommendations by</p> 
         <div class="row align-items-center">
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button id="One" type="button" class="btn btn-outline-primary btn-lg " data-bs-toggle="button" autocomplete="off">Artist</button>
-                <button id="Two" type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="button" autocomplete="off">Playlists</button>
+                <button id="One" type="button" class="btn btn-outline-primary btn-lg " data-bs-toggle="button" autocomplete="off" disabled>Artist</button>
+                <button id="Two" type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="button" autocomplete="off" disabled>Playlists</button>
                 <button id="Three" type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="button" autocomplete="off">Genre</button>
             </div>
         </div>
@@ -29,7 +29,7 @@
        <div class="row justify-content-center " style=" padding-bottom: 20px !important;">   
             <div class="col-sm-2 justify-content-md-center">
 
-                <form method="POST" action="{{ url_for('playlist')}}">
+                <form method="POST" action="{{ url_for('genre')}}">
                  <!--   <label for="start">Start date:</label>
                     <input type="date" class="form-control" id="start" name="events-start"
                         value="2022-02-06">

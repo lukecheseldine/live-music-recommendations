@@ -21,12 +21,13 @@ SPOTIFY_SCOPES = 'user-read-private user-follow-read user-library-read playlist-
 SEATGEEK_CLIENT_ID = 'MjU2MTgyNzV8MTY0NDExNzE3OS4yNjMwMjk'
 SEATGEEK_CLIENT_SECRET = '8b866a86d6e0a65707b99864a3913c51b75431e62261c2f814611abce7c6f5b0'
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/authorize', methods = ['POST', 'GET'])
+@app.route('/authorize', methods=['POST', 'GET'])
 def authorize():
     url = f'https://accounts.spotify.com/authorize?response_type=code&client_id={SPOTIFY_CLIENT_ID}&redirect_uri={SPOTIFY_REDIRECT_URI}&scope={SPOTIFY_SCOPES}'
     return redirect(url)
@@ -44,10 +45,10 @@ def callback():
             'code': code,
             'redirect_uri': SPOTIFY_REDIRECT_URI,
             'grant_type': 'authorization_code'
-        }, headers={ \
+        }, headers={
             'Authorization': 'Basic ' + (urlsafe_b64encode(str.encode(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET)).decode()),
             'Content-Type': 'application/x-www-form-urlencoded'
-        }) 
+        })
         response_data = response.json()
         access_token = response_data['access_token']
         session['access_token'] = access_token
@@ -62,7 +63,6 @@ def recommendation():
 @app.route('/artist', methods=['POST', 'GET'])
 def artist():
     return render_template('artist.html')
-    
 
 
 @app.route('/genre', methods=['POST', 'GET'])
@@ -72,13 +72,16 @@ def genre():
         'Authorization': f'Bearer {session.get("access_token")}'
     }
     response = get(url, headers=headers)
-    genres = response.json()['genres']
-    return render_template('genre.html', genres=genres)
+    print(response)
+    return f"{response.text}"
+    #genres = response.json()['genres']
+    # return render_template('genre.html', genres=genres)
 
 
 @app.route('/playlist', methods=['POST', 'GET'])
 def playlist():
     return f"{request.form.get('selection')}"
+
 
 @app.route('/results/genre/<genre>', methods=['POST', 'GET'])
 def results(genre):
@@ -98,7 +101,7 @@ def results(genre):
         name = response_data['tracks'][i]['album']['artists'][0]['name']
         if name != 'Various Artists':
             artists.add(name)
-        
+
     # remove duplicates
     artists = list(artists)
 
@@ -119,7 +122,7 @@ def results(genre):
     query = ''
     for performer_id in performer_ids:
         query += 'performers.id=' + performer_id + '&'
-    
+
     url = f'https://api.seatgeek.com/2/recommendations?{query}postal_code=10014&client_id={SEATGEEK_CLIENT_ID}'
     response = get(url).json()['recommendations']
 

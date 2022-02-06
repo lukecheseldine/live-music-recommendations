@@ -8,18 +8,21 @@ Results
 {% block content %}
 <div class="container">
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for i in range(20) %}
-    <div class="col">
-      <div class="card h-100">
-        <img src=... class="card-img-top" alt="...">
-        <div class="card-body text-center">
-          <h5 class="card-title">performer name</h5>
-          <p class="card-text">date time</p>
-          <p class="card-text">location</p>
-          <a href="#" class="btn btn-primary">Buy</a>
+    {% for performance in performances %}
+      <a href="{{ performance['link']}}" class="btn btn-primary">
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{ performance['image'] }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              {% for performer in performance['perfomers'] %}
+                <h5 class="card-title">{% if !loop.last %}{{f'{performer} + ' ''}}{% else %}{{ performer }}{% endif %}</h5>
+              {% endfor %}
+              <p class="card-text">{{ performance['date'] }}</p>
+              <p class="card-text">{{ performance['venue'] }}</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </a>
     {% endfor %}
   </div>
 </div>
