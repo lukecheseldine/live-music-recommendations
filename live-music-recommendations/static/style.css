@@ -1,8 +1,21 @@
 * {
-    background-color: #eee;
+  background-color: rgb(e, e, e);
 }
 
 #login {
-    width: 100px;
-    height: 50px;
+  width: 100px;
+  height: 50px;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.jumbotron {
+  background-image: url(./indeximg.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+.maintext {
+  padding-top: 25%;
 }
