@@ -10,7 +10,7 @@
     {% endblock %}
 
     {% block content %}
-    <div class="container-fluid" style="background-color: #81C3D7 !important;">
+    <div class="container-fluid" style="background-color: #81C3D7 !important; height:100vh !important;">
         <p class="text-center fs-2 googfont " style="padding-top: 80px !important;">Get recommendations by</p> 
         <div class="row align-items-center">
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -25,20 +25,21 @@
                 <input class="form-control" type="text" placeholder="Toronto" aria-label="default input example">
             </div>
         </div>    
-        <div class="row justify-content-center " style=" padding-bottom: 20px !important;">   
+       <div class="row justify-content-center " style=" padding-bottom: 20px !important;">   
             <div class="col-sm-2 justify-content-md-center">
 
-                <form method="POST" action="{{ url_for('playlist')}}">
+               <!--- <form method="POST" action="{{ url_for('playlist')}}">
                     <label for="start">Start date:</label>
                     <input type="date" class="form-control" id="start" name="events-start"
                         value="2022-02-06">
                     <label for="end">End date:</label>
                     <input type="date" class="form-control" id="end" name="events-end"
                         value="2022-02-07">
-                    <!-- <input name="start" class="form-control" type="text" placeholder="Start date" aria-label="default input example">
-                    <input name="end" class="form-control" type="text" placeholder="End date" aria-label="default input example"> -->
-                    <button type="submit" class="btn btn-outline-primary" style="border-top-width: 1px !important; margin-top: 10px !important; margin-left: 220px !important;">Submit</button>
-                </form>
+                    <-- <input name="start" class="form-control" type="text" placeholder="Start date" aria-label="default input example">
+                    <input name="end" class="form-control" type="text" placeholder="End date" aria-label="default input example"> -> 
+                -->
+                    <button type="submit" class="btn btn-outline-primary" style="margin-left:64px !important" >Submit</button>
+                
 
                 
                 <!-- <select class="form-select" id="inputGroupSelect01">
