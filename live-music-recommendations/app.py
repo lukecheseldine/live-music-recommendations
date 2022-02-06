@@ -1,8 +1,9 @@
+from datetime import date
 from flask import Flask, render_template, request, redirect, session
 from requests import post, get
 from base64 import urlsafe_b64encode
 from flask_session import Session
-from pprint import pprint
+import calendar
 
 app = Flask(__name__)
 
@@ -67,15 +68,16 @@ def artist():
 
 @app.route('/genre', methods=['POST', 'GET'])
 def genre():
+    zipcode = request.form.get('zip-code')
+    session['zip-code'] = zipcode
     url = 'https://api.spotify.com/v1/recommendations/available-genre-seeds'
     headers = {
         'Authorization': f'Bearer {session.get("access_token")}'
     }
     response = get(url, headers=headers)
-    print(response)
-    return f"{response.text}"
-    #genres = response.json()['genres']
-    # return render_template('genre.html', genres=genres)
+    genres = response.json()['genres']
+    genres = ['hip-hop', 'pop', 'country', 'latin', 'r-n-b', 'dance', 'blues', 'jazz', 'classical']
+    return render_template('genre.html', genres=genres)
 
 
 @app.route('/playlist', methods=['POST', 'GET'])
@@ -122,8 +124,8 @@ def results(genre):
     query = ''
     for performer_id in performer_ids:
         query += 'performers.id=' + performer_id + '&'
-
-    url = f'https://api.seatgeek.com/2/recommendations?{query}postal_code=10014&client_id={SEATGEEK_CLIENT_ID}'
+    zipcode = session.get('zip-code')
+    url = f'https://api.seatgeek.com/2/recommendations?{query}postal_code={zipcode}&client_id={SEATGEEK_CLIENT_ID}'
     response = get(url).json()['recommendations']
 
     performances = []
@@ -140,10 +142,15 @@ def results(genre):
             image = event['performers'][0]['images']['huge']
         else:
             image = None
+        year = event['datetime_local'][:4]
+        month = event['datetime_local'][5:7]
+        day = event['datetime_local'][8:10]
+        month = calendar.month_name[int(month)]
+        date = f'{month} {day}, {year}'
 
         performance = {
             'perfomers': performers,
-            'date': event['datetime_local'],
+            'date': date,
             'venue': event['venue']['name'],
             'image': image,
             'link': event['url']

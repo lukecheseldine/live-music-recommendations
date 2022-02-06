@@ -1,29 +1,43 @@
 {% extends "base.html" %}
 
-{% block title %}
-Results
-{% endblock %}
+  {% block title %}
+    Results
+  {% endblock %}
 
+  {% block scripts %}
+    <style>
+      .card:hover {
+        background-color: #eee;
+      }
+    </style>
+  {% endblock %}
 
-{% block content %}
-<div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for performance in performances %}
-      <a href="{{ performance['link']}}" class="btn btn-primary">
+  {% block content %}
+  <div class="container-fluid" style="background-color: #81C3D7 !important; padding-top: 20px !important; padding-bottom: 20px !important;">
+    <p class="text-center fs-2 googfont ">Upcoming shows</p>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for performance in performances %}
         <div class="col">
-          <div class="card h-100">
-            <img src="{{ performance['image'] }}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-              {% for performer in performance['perfomers'] %}
-                <h5 class="card-title">{% if !loop.last %}{{f'{performer} + ' ''}}{% else %}{{ performer }}{% endif %}</h5>
-              {% endfor %}
-              <p class="card-text">{{ performance['date'] }}</p>
-              <p class="card-text">{{ performance['venue'] }}</p>
-            </div>
+          <a href="{{ performance['link']}}" style="text-decoration:none !important;">
+            <div class="card h-100" style="border:none !important;">
+              <img src="{{ performance['image'] }}" class="card-img-top" alt="...">
+              <div class="card-body text-center" style="">
+                {% for performer in performance['perfomers'] %}
+                  {% if loop.first %}
+                    <h2 class="card-title googfont" style="color: ;">{{performer}}</h5>
+                  {% elif loop.last %}
+                    <span class="card-text googfont">{{performer}}</span>
+                  {% else %}
+                    <span class="card-text googfont">{{performer}} - </span>
+                  {% endif %}
+                {% endfor %}
+                <h4 class="card-title googfont" style="padding-top: 10px !important;">{{ performance['date'] }}</h5>
+                <h4 class="card-title googfont">{{ performance['venue'] }}</h5>
+              </div>
+            </a>
           </div>
         </div>
-      </a>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}

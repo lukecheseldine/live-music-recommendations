@@ -5,11 +5,20 @@
     {% endblock %}
 
     {% block scripts%}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     {% endblock %}
 
     {% block content %}
-        <h1>What genre are you interested in?</h1>
+    <div class="container-fluid" style="background-color: #81C3D7 !important; height:100vh !important;">
+        <p class="text-center fs-2 googfont " style="padding-top: 80px !important;">What genre are you interested in?</p>
+        <div class="d-flex">
+        <ul class="list-inline mx-auto justify-content-center"> 
+        
         {% for genre in genres %}
-            <a href="{{ url_for('results', genre=genre) }}">{{genre}}</a>
+            <a href="{{ url_for('results', genre=genre, zipcode=zipcode) }}" style="text-decoration:none">
+                <li class="list-group-item text-center">{{ genre }}</li>
+            </a>
         {% endfor %}
+        </ul>
+    </div>
     {% endblock %}
