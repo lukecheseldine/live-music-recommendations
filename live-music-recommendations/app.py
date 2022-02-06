@@ -12,18 +12,17 @@ REDIRECT_URI = 'http://127.0.0.1:5000/callback'
 SCOPES = 'user-read-private user-follow-read user-library-read playlist-read-private user-top-read'
 
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/authorize', methods = ['POST'])
+@app.route('/authorize', methods=['POST', 'GET'])
 def authorize():
     url = f'https://accounts.spotify.com/authorize?response_type=code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPES}'
     print(url)
     return redirect(url)
-    
+
 
 @app.route('/callback', methods=['GET'])
 def callback():
@@ -37,15 +36,17 @@ def callback():
             'code': code,
             'redirect_uri': REDIRECT_URI,
             'grant_type': 'authorization_code'
-        }, headers={ \
+        }, headers={
             'Authorization': 'Basic ' + (urlsafe_b64encode(str.encode(CLIENT_ID + ':' + CLIENT_SECRET)).decode()),
             'Content-Type': 'application/x-www-form-urlencoded'
-        }) 
+        })
         return redirect('/recommendation')
+
 
 @app.route('/recommendation')
 def recommendation():
     return render_template('recommendation.html')
+
 
 @app.route('/playlist', methods=['POST', 'GET'])
 def playlist():
