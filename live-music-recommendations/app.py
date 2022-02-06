@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 from requests import post, get
 from base64 import urlsafe_b64encode
 from flask_session import Session
-
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -85,7 +85,7 @@ def results(genre):
     url = 'https://api.spotify.com/v1/recommendations'
     params = {
         'seed_genres': str(genre),
-        'limit': 50
+        'limit': 5
     }
     headers = {
         'Authorization': f'Bearer {session.get("access_token")}'
@@ -102,8 +102,49 @@ def results(genre):
     # remove duplicates
     artists = list(artists)
 
-    url = 
+    performer_ids = set()
+    # convert spotify artists to seatgeek performer ids
+    url = 'https://api.seatgeek.com/2/performers'
+    for artist in artists:
+        params = {
+            'q': artist,
+            'client_id': SEATGEEK_CLIENT_ID
+        }
+        response = get(url, params=params).json()
+        for perfomer in response['performers']:
+            if perfomer['name'].lower() == artist.lower():
+                performer_ids.add(str(perfomer['id']))
+
+    # get recommendations for performers
+    query = ''
+    for performer_id in performer_ids:
+        query += 'performers.id=' + performer_id + '&'
     
+    url = f'https://api.seatgeek.com/2/recommendations?{query}postal_code=10014&client_id={SEATGEEK_CLIENT_ID}'
+    response = get(url).json()['recommendations']
 
+    performances = []
+    for event in response:
+        event = event['event']
+        if event['type'] != 'concert':
+            continue
+        #performers = [perfomer['name'] for performer in event['performers']]
+        performers = []
+        for performer in event['performers']:
+            if performer['name'] not in performers:
+                performers.append(performer['name'])
+        if event['performers'][0]['images']:
+            image = event['performers'][0]['images']['huge']
+        else:
+            image = None
 
-    return f"{artists} {len(artists)}"
+        performance = {
+            'perfomers': performers,
+            'date': event['datetime_local'],
+            'venue': event['venue']['name'],
+            'image': image,
+            'link': event['url']
+        }
+        performances.append(performance)
+
+    return render_template('results.html', performances=performances)
