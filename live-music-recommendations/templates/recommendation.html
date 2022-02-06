@@ -10,44 +10,44 @@
     {% endblock %}
 
     {% block content %}
-    <div class="container-fluid">
-        <p class="">Get recommendations by:</p> 
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <button id="One" type="button" class="btn btn-primary btn-lg " data-bs-toggle="button" autocomplete="off">Artist</button>
-            <button id="Two" type="button" class="btn btn-primary btn-lg" data-bs-toggle="button" autocomplete="off">Playlists</button>
-            <button id="Three" type="button" class="btn btn-primary btn-lg" data-bs-toggle="button" autocomplete="off">Genre</button>
+    <div class="container-fluid" style="background-color: #81C3D7 !important;">
+        <p class="text-center fs-2 googfont " style="padding-top: 80px !important;">Get recommendations by</p> 
+        <div class="row align-items-center">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button id="One" type="button" class="btn btn-outline-primary btn-lg " data-bs-toggle="button" autocomplete="off">Artist</button>
+                <button id="Two" type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="button" autocomplete="off">Playlists</button>
+                <button id="Three" type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="button" autocomplete="off">Genre</button>
+            </div>
         </div>
+        <div class="row justify-content-center " style="padding-top: 80px !important; padding-bottom: 20px !important;">
+            <div class="col-sm-2 align-self-center">
+                <label for="exampleFormControlInput1" class="form-label">Enter location/city:</label>
+                <input class="form-control" type="text" placeholder="Toronto" aria-label="default input example">
+            </div>
+        </div>    
+        <div class="row justify-content-center " style=" padding-bottom: 20px !important;">   
+            <div class="col-sm-2 justify-content-md-center">
 
+                <form method="POST" action="{{ url_for('playlist')}}">
+                    <label for="start">Start date:</label>
+                    <input type="date" class="form-control" id="start" name="events-start"
+                        value="2022-02-06">
+                    <label for="end">End date:</label>
+                    <input type="date" class="form-control" id="end" name="events-end"
+                        value="2022-02-07">
+                    <!-- <input name="start" class="form-control" type="text" placeholder="Start date" aria-label="default input example">
+                    <input name="end" class="form-control" type="text" placeholder="End date" aria-label="default input example"> -->
+                    <button type="submit" class="btn btn-outline-primary" style="border-top-width: 1px !important; margin-top: 10px !important; margin-left: 220px !important;">Submit</button>
+                </form>
 
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Enter location/city:</label>
-            <input class="form-control" type="text" placeholder="Toronto" aria-label="default input example">
-        </div>
-
-
-        <div class="mb-3">
-
-            <form method="POST" action="{{ url_for('playlist')}}">
-                <label for="exampleFormControlInput1" class="form-label">Enter date range of live performances:</label>
-                <label for="start">Start date:</label>
-                <input type="date" class="form-control" id="start" name="events-start"
-                    value="2022-02-06">
-                <label for="end">End date:</label>
-                <input type="date" class="form-control" id="end" name="events-end"
-                    value="2022-02-07">
-                <!-- <input name="start" class="form-control" type="text" placeholder="Start date" aria-label="default input example">
-                <input name="end" class="form-control" type="text" placeholder="End date" aria-label="default input example"> -->
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-            
-            <!-- <select class="form-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select> -->
-        </div>
+                
+                <!-- <select class="form-select" id="inputGroupSelect01">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select> -->
+            </div>
+        </div> 
     </div>
     {% endblock %}

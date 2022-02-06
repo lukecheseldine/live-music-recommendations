@@ -7,8 +7,9 @@
   height: 50px;
 }
 
-.navbar {
+.navbar-expand-lg {
   margin-bottom: 0px;
+  padding-top: 0px;
 }
 
 .jumbotron {
@@ -18,4 +19,8 @@
 }
 .maintext {
   padding-top: 25%;
+}
+
+.googfont {
+  font-family: "Exo", sans-serif;
 }
