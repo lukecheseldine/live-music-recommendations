@@ -29,8 +29,14 @@
 
             <form method="POST" action="{{ url_for('playlist')}}">
                 <label for="exampleFormControlInput1" class="form-label">Enter date range of live performances:</label>
-                <input name="start" class="form-control" type="text" placeholder="Start date" aria-label="default input example">
-                <input name="end" class="form-control" type="text" placeholder="End date" aria-label="default input example">
+                <label for="start">Start date:</label>
+                <input type="date" class="form-control" id="start" name="events-start"
+                    value="2022-02-06">
+                <label for="end">End date:</label>
+                <input type="date" class="form-control" id="end" name="events-end"
+                    value="2022-02-07">
+                <!-- <input name="start" class="form-control" type="text" placeholder="Start date" aria-label="default input example">
+                <input name="end" class="form-control" type="text" placeholder="End date" aria-label="default input example"> -->
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
