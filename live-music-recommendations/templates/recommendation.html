@@ -4,23 +4,28 @@
         Recommendations
     {% endblock %}
 
-    {% block content %}
-        <p class="bg-dark text-white">Get recommendations by:</p> 
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="../static/buttonpress.js"></script>
+    {% endblock %}
 
-        <div class="d-grid gap-2 d-md-block bg-dark">
-            <button type="button" class="btn btn-primary active" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Artist</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Playlists</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Genre</button>
+    {% block content %}
+        <p class="">Get recommendations by:</p> 
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <button id="One" type="button" class="btn btn-primary btn-lg " data-bs-toggle="button" autocomplete="off">Artist</button>
+            <button id="Two" type="button" class="btn btn-primary btn-lg" data-bs-toggle="button" autocomplete="off">Playlists</button>
+            <button id="Three" type="button" class="btn btn-primary btn-lg" data-bs-toggle="button" autocomplete="off">Genre</button>
         </div>
 
 
-        <div class="mb-3 bg-dark">
-            <label for="exampleFormControlInput1" class="form-label bg-dark text-white">Enter location/city:</label>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter location/city:</label>
             <input class="form-control" type="text" placeholder="Toronto" aria-label="default input example">
         </div>
 
 
-        <div class="mb-3  bg-dark">
+        <div class="mb-3">
 
             <form method="POST" action="{{ url_for('playlist')}}">
                 <label for="exampleFormControlInput1" class="form-label">Enter date range of live performances:</label>
