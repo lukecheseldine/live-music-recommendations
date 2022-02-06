@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+    {% block title %}
+        Artist
+    {% endblock %}
+
+    {% block scripts%}
+        <script src="{{ url_for('static', filename='artist.js')}}" defer></script>
+    {% endblock %}
+
+    {% block content %}
+    <h1>Search for an artist to get recommendations for or get recommendations from your followed artists!</h1>
+    <form action="{{ url_for('results')}}">
+        <input type="hidden" name="category" value="artist">
+        <input id="artist" placeholder="Selena Gomez" type="text" name="artist">
+        <label for="artist">Search for an artist</label>
+        <button type="submit">Search</button>
+    </form>
+    <button>Get recommendations from your followed artists</button>
+    {% endblock %}
