@@ -8,7 +8,8 @@
     {% endblock %}
 
     {% block content %}
+        <h1>What genre are you interested in?</h1>
         {% for genre in genres %}
-            <p>{{genre}}</p>
+            <a href="{{ url_for('results', genre=genre) }}">{{genre}}</a>
         {% endfor %}
     {% endblock %}
