@@ -49,4 +49,4 @@ def recommendation():
 
 @app.route('/playlist', methods=['POST', 'GET'])
 def playlist():
-    return 'playlist'
+    return f"{request.form.get('selection')}"
