@@ -13,14 +13,14 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # spotify api credentials
-SPOTIFY_CLIENT_ID = '6151954dbc3842b98c6f8bbab8616310'
-SPOTIFY_CLIENT_SECRET = '43e0561d85b944de8c6e9059d9a8a7f1'
+SPOTIFY_CLIENT_ID = ''
+SPOTIFY_CLIENT_SECRET = ''
 SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:5000/callback'
 SPOTIFY_SCOPES = 'user-read-private user-follow-read user-library-read playlist-read-private user-top-read'
 
 # seatgeek api credentials
-SEATGEEK_CLIENT_ID = 'MjU2MTgyNzV8MTY0NDExNzE3OS4yNjMwMjk'
-SEATGEEK_CLIENT_SECRET = '8b866a86d6e0a65707b99864a3913c51b75431e62261c2f814611abce7c6f5b0'
+SEATGEEK_CLIENT_ID = ''
+SEATGEEK_CLIENT_SECRET = ''
 
 
 @app.route('/')
