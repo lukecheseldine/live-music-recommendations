@@ -36,7 +36,6 @@ def authorize():
 
 @app.route('/callback', methods=['GET'])
 def callback():
-    # TODO: Handle invalid login credentials/error, whenever this happens
     if request.args.get('error'):
         return 'error'
     else:
@@ -133,7 +132,7 @@ def results(genre):
         event = event['event']
         if event['type'] != 'concert':
             continue
-        #performers = [perfomer['name'] for performer in event['performers']]
+        
         performers = []
         for performer in event['performers']:
             if performer['name'] not in performers:
